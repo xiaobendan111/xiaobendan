@@ -15,4 +15,5 @@ import java.util.List;
  */
 public interface ProductService extends IService<Product> {
     public List<Product> findByLevelId(Integer type,Integer id);
+    public List<Product> sousuo(String keyWord);
 }

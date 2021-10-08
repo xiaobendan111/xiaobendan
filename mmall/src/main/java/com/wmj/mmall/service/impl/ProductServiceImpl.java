@@ -1,5 +1,6 @@
 package com.wmj.mmall.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.wmj.mmall.entity.Product;
 import com.wmj.mmall.mapper.ProductMapper;
 import com.wmj.mmall.service.ProductService;
@@ -24,6 +25,8 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
 
     @Autowired
     private ProductService service;
+    @Autowired
+    private ProductMapper mapper;
 
     @Override
     public List<Product> findByLevelId(Integer type,Integer id) {
@@ -33,5 +36,13 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
         if (type == 3) map.put("categorylevelthree_id",id);
         List<Product> products = service.listByMap(map);
         return products;
+    }
+
+    @Override
+    public List<Product> sousuo(String keyWord) {
+        QueryWrapper wrapper = new QueryWrapper();
+        wrapper.like("name",keyWord);
+        List<Product> list = mapper.selectList(wrapper);
+        return list;
     }
 }

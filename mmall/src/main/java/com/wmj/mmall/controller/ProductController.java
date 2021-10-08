@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
@@ -47,6 +48,18 @@ public class ProductController {
         model.addAttribute("carts",cartService.findAllCartByUserId(user.getId()));
         return "productList";
     }
+
+    @PostMapping("sousuo")
+    public String sousuo(Model model,String keyWord,HttpSession session){
+        List<Product> level = service.sousuo(keyWord);
+        model.addAttribute("list",productCategoryService.getAllProductCategoryVo());
+        model.addAttribute("level",level);
+        User user = (User) session.getAttribute("user");
+        if (user!=null)
+            model.addAttribute("carts",cartService.findAllCartByUserId(user.getId()));
+        return "productList";
+    }
+
     @GetMapping("shangpin/{id}")
     public String shangpin(Model model,@PathVariable("id") Integer id,HttpSession session){
         QueryWrapper wrapper = new QueryWrapper();
