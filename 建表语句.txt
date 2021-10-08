@@ -1,5 +1,5 @@
 -- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
---  order表变成orders  product_category加banner和top字段 type为1加banner0~5和top0~5数据
+--  order表变成orders  product_category加banner和top字段 type为1加banner0~5和top0~5 数据
 -- Host: 127.0.0.1    Database: mmall
 -- ------------------------------------------------------
 -- Server version	8.0.19
